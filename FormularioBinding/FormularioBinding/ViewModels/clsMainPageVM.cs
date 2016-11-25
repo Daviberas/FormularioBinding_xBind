@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace FormularioBinding.ViewModels
 {
-    public class clsMainPageVM : INotifyPropertyChanged
+    public class clsMainPageVM : clsVMBase
     {
         private clsPersona _personaSeleccionada;
         private ObservableCollection<clsPersona> _listado;
-        public event PropertyChangedEventHandler PropertyChanged;
+        private DelegateCommand _eliminarCommand;
 
         public clsMainPageVM()
         {
@@ -30,7 +30,7 @@ namespace FormularioBinding.ViewModels
             set
             {
                 _personaSeleccionada = value;
-                OnPropertyChanged("personaSeleccionada");
+                NotifyPropertyChanged("personaSeleccionada");
             }
         }
         public ObservableCollection<clsPersona> listado
@@ -41,18 +41,31 @@ namespace FormularioBinding.ViewModels
             }
         }
 
-        protected void OnPropertyChanged(string name)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
-        }
-
         public void btnEliminar_Click()
         {
             listado.Remove(personaSeleccionada);
+        }
+
+        public DelegateCommand eliminarCommand
+        {
+            get
+            {
+                _eliminarCommand = new DelegateCommand(EliminarCommand_Executed, EliminarCommand_CanExecute);
+                return _eliminarCommand;
+            }
+        }
+
+        private void EliminarCommand_Executed()
+        {
+            listado.Remove(personaSeleccionada);
+        }
+
+        private bool EliminarCommand_CanExecute()
+        {
+            bool puedeBorrar = false;
+            if (personaSeleccionada != null)
+                puedeBorrar = true;
+            return puedeBorrar;
         }
     }
 }

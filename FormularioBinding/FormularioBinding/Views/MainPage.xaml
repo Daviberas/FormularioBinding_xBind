@@ -25,6 +25,11 @@
 
         <AppBarButton Name="btnGuardar" Icon="Save" Label="Guardar" Click="btnGuardar_Click" HorizontalAlignment="Left"/>
         <AppBarButton Name="btnEliminar" Icon="Delete" Label="Eliminar" Click="{x:Bind ViewModel.btnEliminar_Click}" HorizontalAlignment="Center"/>
+        <AppBarButton Name="btnEliminarCMD" Icon="Delete" Command="{Binding eliminarCommand}" Label="EliminarCMD"  HorizontalAlignment="Right"/>
+
+        <CommandBar Grid.Column="1" Grid.Row="0">
+            
+        </CommandBar>
 
         <ScrollViewer Grid.Column="0" Grid.Row="1">
             <ListView x:Name="lista" Margin="12" ItemsSource="{Binding listado}" SelectedItem="{Binding personaSeleccionada, Mode=TwoWay}">
