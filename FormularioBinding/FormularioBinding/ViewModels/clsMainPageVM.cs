@@ -30,6 +30,7 @@ namespace FormularioBinding.ViewModels
             set
             {
                 _personaSeleccionada = value;
+                _eliminarCommand.RaiseCanExecuteChanged();
                 NotifyPropertyChanged("personaSeleccionada");
             }
         }
