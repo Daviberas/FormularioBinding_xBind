@@ -19,6 +19,7 @@ namespace FormularioBinding.ViewModels
         {
             clsListado lista = new clsListado();
             _listado = lista.getListado();
+            _eliminarCommand = new DelegateCommand(EliminarCommand_Executed, EliminarCommand_CanExecute);
         }
 
         public clsPersona personaSeleccionada
@@ -51,7 +52,6 @@ namespace FormularioBinding.ViewModels
         {
             get
             {
-                _eliminarCommand = new DelegateCommand(EliminarCommand_Executed, EliminarCommand_CanExecute);
                 return _eliminarCommand;
             }
         }
