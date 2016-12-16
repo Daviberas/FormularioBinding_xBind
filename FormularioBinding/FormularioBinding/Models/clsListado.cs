@@ -1,8 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.ObjectModel;
-using System.Net.Http;
 using System.Threading.Tasks;
+using Windows.Web.Http;
+using Windows.Web.Http.Filters;
 
 namespace FormularioBinding.Models
 {
@@ -27,7 +28,11 @@ namespace FormularioBinding.Models
             //lista.Add(new clsPersona(11, "Aoi", "Asahina", new DateTime(2000, 7, 2), "adjklfhbl", "888888888"));
             //lista.Add(new clsPersona(12, "Touko", "Fukawa", new DateTime(2000, 4, 15), "dkfhbsdlf", "555555555"));
 
-            HttpClient client = new HttpClient();
+            HttpBaseProtocolFilter filtro = new HttpBaseProtocolFilter();
+            filtro.CacheControl.ReadBehavior = HttpCacheReadBehavior.MostRecent;
+            filtro.CacheControl.WriteBehavior = HttpCacheWriteBehavior.NoCache;
+
+            HttpClient client = new HttpClient(filtro);
 
             try
             {
