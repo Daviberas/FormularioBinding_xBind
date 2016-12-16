@@ -17,9 +17,16 @@ namespace FormularioBinding.ViewModels
 
         public clsMainPageVM()
         {
-            clsListado lista = new clsListado();
-            _listado = lista.getListado();
+
+            rellenarLista();
             _eliminarCommand = new DelegateCommand(EliminarCommand_Executed, EliminarCommand_CanExecute);
+        }
+
+        private async void rellenarLista()
+        {
+            clsListado lista = new clsListado();
+            _listado = await lista.getListado();
+            NotifyPropertyChanged("listado");
         }
 
         public clsPersona personaSeleccionada

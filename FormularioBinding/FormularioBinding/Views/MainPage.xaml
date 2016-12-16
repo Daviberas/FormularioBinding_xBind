@@ -39,7 +39,7 @@
         </AppBar>
 
         <ScrollViewer Grid.Column="0" Grid.Row="1">
-            <ListView x:Name="lista" Margin="12" ItemsSource="{Binding listado}" SelectedItem="{Binding personaSeleccionada, Mode=TwoWay}">
+            <ListView x:Name="lista" MinWidth="150" Margin="12" ItemsSource="{Binding listado}" SelectedItem="{Binding personaSeleccionada, Mode=TwoWay}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
